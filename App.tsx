@@ -4,6 +4,7 @@ import { ReactIcon } from './components/icons/ReactIcon.tsx';
 import { NodeJsIcon } from './components/icons/NodeJsIcon.tsx';
 import { EthIcon } from './components/icons/EthIcon.tsx';
 import { DarkModeToggle } from './components/DarkModeToggle.tsx';
+import { FilledLightningIcon } from './components/icons/FilledLightningIcon.tsx';
 
 // The ViewTransition API is not yet in standard TS libs, so we declare it here.
 declare global {
@@ -151,8 +152,8 @@ export default function App() {
       <header className={`flex justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <LightningIcon className="h-6 text-red-600" />
-            <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
+            <LightningIcon className="h-6 text-[#FF4500]" />
+            <span className="font-bold text-[#FF4500] tracking-wide">SURYANSH // SINGH</span>
           </div>
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
@@ -180,18 +181,18 @@ export default function App() {
 
               {/* Emoji Row */}
               <div className="flex items-center justify-start gap-4 mb-10">
-                <LightningIcon className="w-6 h-6" />
-                <ReactIcon className="w-10 h-10" />
-                <LightningIcon className="w-6 h-6" />
-                <NodeJsIcon className="w-10 h-10" />
-                <LightningIcon className="w-6 h-6" />
-                <EthIcon className="w-[2.625rem] h-[2.625rem]" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-105" />
+                <ReactIcon className="w-10 h-10 transition-transform duration-200 ease-in-out hover:scale-105" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-105" />
+                <NodeJsIcon className="w-10 h-10 transition-transform duration-200 ease-in-out hover:scale-105" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-105" />
+                <EthIcon className="w-[2.625rem] h-[2.625rem] transition-transform duration-200 ease-in-out hover:scale-105" />
               </div>
             </div>
             
             {/* Bottom content block */}
             <div className="flex justify-end">
-              <p className={`max-w-md text-sm leading-relaxed text-left ${grayTextClasses}`}>
+              <p className={`max-w-md text-sm leading- relaxed text-left ${grayTextClasses}`}>
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -205,7 +206,7 @@ export default function App() {
             <span>/01</span>
           </div>
           <div className="flex-1 flex justify-end items-end py-12">
-             <LightningIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
+             <FilledLightningIcon className="w-40 h-40 object-contain text-[#FF4500] flex-shrink-0" />
           </div>
         </div>
       </main>
