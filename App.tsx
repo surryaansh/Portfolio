@@ -152,8 +152,8 @@ export default function App() {
       <header className={`flex justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <LightningIcon className="h-6 text-[#F44336]" />
-            <span className="font-bold text-[#F44336] tracking-wide">SURYANSH // SINGH</span>
+            <LightningIcon className="h-6 text-[#FF4500]" />
+            <span className="font-bold text-[#FF4500] tracking-wide">SURYANSH // SINGH</span>
           </div>
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
@@ -181,12 +181,12 @@ export default function App() {
 
               {/* Emoji Row */}
               <div className="flex items-center justify-start gap-4 mb-10">
-                <LightningIcon className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-105" />
-                <ReactIcon className="w-10 h-10 transition-transform duration-200 ease-in-out hover:scale-105" />
-                <LightningIcon className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-105" />
-                <NodeJsIcon className="w-10 h-10 transition-transform duration-200 ease-in-out hover:scale-105" />
-                <LightningIcon className="w-6 h-6 transition-transform duration-200 ease-in-out hover:scale-105" />
-                <EthIcon className="w-[2.625rem] h-[2.625rem] transition-transform duration-200 ease-in-out hover:scale-105" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
+                <ReactIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
+                <NodeJsIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
+                <EthIcon className="w-[2.625rem] h-[2.625rem] transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
               </div>
             </div>
             
@@ -206,7 +206,7 @@ export default function App() {
             <span>/01</span>
           </div>
           <div className="flex-1 flex justify-end items-end py-12">
-             <FilledLightningIcon className="w-40 h-40 object-contain text-[#F44336] flex-shrink-0" />
+             <FilledLightningIcon className="w-40 h-40 object-contain text-[#FF4500] flex-shrink-0" />
           </div>
         </div>
       </main>
