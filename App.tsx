@@ -96,7 +96,7 @@ export default function App() {
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
         <div className="w-1/2 flex flex-col pr-8">
-          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text">
+          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text transition-colors duration-300 ease-in-out">
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -126,7 +126,7 @@ export default function App() {
             
             {/* Bottom content block */}
             <div className="flex justify-end">
-              <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left gray-text">
+              <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left gray-text transition-colors duration-300 ease-in-out">
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -135,7 +135,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
-          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text">
+          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text transition-colors duration-300 ease-in-out">
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
