@@ -1,6 +1,4 @@
 import React from 'react';
-import { LogoIcon } from './components/icons/LogoIcon';
-import { LargeLogoIcon } from './components/icons/LargeLogoIcon';
 import { LightningIcon } from './components/icons/LightningIcon';
 import { FaceIcon1 } from './components/icons/FaceIcon1'; // Smirk
 import { FaceIcon2 } from './components/icons/FaceIcon2'; // Angry
@@ -8,12 +6,12 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 
 export default function App() {
   return (
-    <div className="bg-[#efeeee] min-h-screen flex flex-col font-Inter px-16 pt-8 text-black">
+    <div className="bg-[#efeeee] min-h-screen flex flex-col font-sans px-16 pt-8 text-black">
       {/* Top Bar */}
       <header className="flex justify-between items-center py-4 border-b border-black">
         <div className="flex items-center gap-2">
-          <LogoIcon className="h-6 text-red-600" />
-          <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
+          <LightningIcon className="h-6 text-red-600" />
+          <span className="font-bold text-red-600 tracking-wide">SURYANSH // DEV</span>
         </div>
         <nav className="flex gap-8 text-lg">
           <a href="#" className="hover:underline">PROJECTS</a>
@@ -59,7 +57,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-1/2 flex justify-end items-end py-12 pl-12">
-           <LargeLogoIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
+           <LightningIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
         </div>
       </main>
     </div>
