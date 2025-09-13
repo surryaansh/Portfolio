@@ -101,7 +101,7 @@ export default function App() {
 
   return (
     <div 
-      className={`min-h-screen flex flex-col font-sans px-16 pt-8 transition-colors duration-300 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
+      className={`min-h-screen flex flex-col font-sans px-16 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
       style={{ cursor: 'none' }}
       >
         <div
@@ -122,7 +122,7 @@ export default function App() {
             aria-hidden="true"
         />
       {/* Top Bar */}
-      <header className={`flex justify-between items-center py-4 border-b transition-colors duration-300 ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
+      <header className={`flex justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <LightningIcon className="h-6 text-red-600" />
@@ -138,7 +138,7 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className={`flex flex-1 divide-x transition-colors duration-300 ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
+      <main className={`flex flex-1 divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
         <div className="w-1/2 flex flex-col pr-8">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
