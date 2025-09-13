@@ -3,10 +3,12 @@ import { LightningIcon } from './components/icons/LightningIcon';
 import { FaceIcon1 } from './components/icons/FaceIcon1'; // Smirk
 import { FaceIcon2 } from './components/icons/FaceIcon2'; // Angry
 import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
+import { DarkModeToggle } from './components/DarkModeToggle';
 
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -16,30 +18,13 @@ export default function App() {
     window.addEventListener('mousemove', handleMouseMove);
 
     const interactiveElements = document.querySelectorAll('a, button');
-    const specialTextElements = document.querySelectorAll('.gray-text');
     
     const handleLinkEnter = () => setIsHoveringLink(true);
     const handleLinkLeave = () => setIsHoveringLink(false);
 
-    const handleSpecialTextEnter = (event: Event) => {
-      if (event.currentTarget instanceof HTMLElement) {
-        event.currentTarget.style.color = 'black';
-      }
-    };
-    const handleSpecialTextLeave = (event: Event) => {
-      if (event.currentTarget instanceof HTMLElement) {
-        event.currentTarget.style.color = '';
-      }
-    };
-
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleLinkEnter);
       el.addEventListener('mouseleave', handleLinkLeave);
-    });
-
-    specialTextElements.forEach(el => {
-      el.addEventListener('mouseenter', handleSpecialTextEnter);
-      el.addEventListener('mouseleave', handleSpecialTextLeave);
     });
 
     return () => {
@@ -48,18 +33,20 @@ export default function App() {
         el.removeEventListener('mouseenter', handleLinkEnter);
         el.removeEventListener('mouseleave', handleLinkLeave);
       });
-      specialTextElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleSpecialTextEnter);
-        el.removeEventListener('mouseleave', handleSpecialTextLeave);
-      });
     };
   }, []);
 
   const cursorSize = isHoveringLink ? 60 : 40;
 
+  const grayTextClasses = `transition-colors duration-300 ease-in-out ${
+    isDarkMode
+      ? 'text-gray-400 hover:text-[#efeeee]'
+      : 'text-gray-600 hover:text-black'
+  }`;
+
   return (
     <div 
-      className="bg-[#efeeee] min-h-screen flex flex-col font-sans px-16 pt-8 text-black"
+      className={`min-h-screen flex flex-col font-sans px-16 pt-8 transition-colors duration-300 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
       style={{ cursor: 'none' }}
       >
         <div
@@ -80,10 +67,13 @@ export default function App() {
             aria-hidden="true"
         />
       {/* Top Bar */}
-      <header className="flex justify-between items-center py-4 border-b border-black">
-        <div className="flex items-center gap-2">
-          <LightningIcon className="h-6 text-red-600" />
-          <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
+      <header className={`flex justify-between items-center py-4 border-b transition-colors duration-300 ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <LightningIcon className="h-6 text-red-600" />
+            <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
+          </div>
+          <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
         </div>
         <nav className="flex gap-8 text-lg">
           <a href="#" className="hover:underline">PROJECTS</a>
@@ -93,10 +83,10 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className="flex flex-1 divide-x divide-black">
+      <main className={`flex flex-1 divide-x transition-colors duration-300 ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
         <div className="w-1/2 flex flex-col pr-8">
-          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text transition-colors duration-300 ease-in-out">
+          <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -126,7 +116,7 @@ export default function App() {
             
             {/* Bottom content block */}
             <div className="flex justify-end">
-              <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left gray-text transition-colors duration-300 ease-in-out">
+              <p className={`max-w-md text-sm leading-relaxed text-left ${grayTextClasses}`}>
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -135,7 +125,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
-          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text transition-colors duration-300 ease-in-out">
+          <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
