@@ -181,12 +181,12 @@ export default function App() {
 
               {/* Emoji Row */}
               <div className="flex items-center justify-start gap-4 mb-10">
-                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
-                <ReactIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
-                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
-                <NodeJsIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
-                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
-                <EthIcon className="w-[2.625rem] h-[2.625rem] transition-transform duration-300 ease-in-out hover:scale-125 hover:-rotate-12" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125" />
+                <ReactIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125" />
+                <NodeJsIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125" />
+                <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125" />
+                <EthIcon className="w-[2.625rem] h-[2.625rem] transition-transform duration-300 ease-in-out hover:scale-125" />
               </div>
             </div>
             
