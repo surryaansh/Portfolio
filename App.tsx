@@ -7,6 +7,7 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [isHoveringSpecialText, setIsHoveringSpecialText] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -16,20 +17,33 @@ export default function App() {
     window.addEventListener('mousemove', handleMouseMove);
 
     const interactiveElements = document.querySelectorAll('a, button');
+    const specialTextElements = document.querySelectorAll('.gray-text');
     
-    const handleMouseEnter = () => setIsHoveringLink(true);
-    const handleMouseLeave = () => setIsHoveringLink(false);
+    const handleLinkEnter = () => setIsHoveringLink(true);
+    const handleLinkLeave = () => setIsHoveringLink(false);
+
+    const handleSpecialTextEnter = () => setIsHoveringSpecialText(true);
+    const handleSpecialTextLeave = () => setIsHoveringSpecialText(false);
 
     interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter);
-      el.addEventListener('mouseleave', handleMouseLeave);
+      el.addEventListener('mouseenter', handleLinkEnter);
+      el.addEventListener('mouseleave', handleLinkLeave);
+    });
+
+    specialTextElements.forEach(el => {
+      el.addEventListener('mouseenter', handleSpecialTextEnter);
+      el.addEventListener('mouseleave', handleSpecialTextLeave);
     });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter);
-        el.removeEventListener('mouseleave', handleMouseLeave);
+        el.removeEventListener('mouseenter', handleLinkEnter);
+        el.removeEventListener('mouseleave', handleLinkLeave);
+      });
+      specialTextElements.forEach(el => {
+        el.removeEventListener('mouseenter', handleSpecialTextEnter);
+        el.removeEventListener('mouseleave', handleSpecialTextLeave);
       });
     };
   }, []);
@@ -48,13 +62,15 @@ export default function App() {
                 left: cursorPosition.x,
                 width: `${cursorSize}px`,
                 height: `${cursorSize}px`,
-                backgroundColor: 'white',
                 borderRadius: '50%',
                 pointerEvents: 'none',
                 transform: 'translate(-50%, -50%)',
-                mixBlendMode: 'difference',
                 zIndex: 9999,
-                transition: 'width 0.2s ease-in-out, height 0.2s ease-in-out',
+                transition: 'width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border 0.2s ease',
+                boxSizing: 'border-box',
+                backgroundColor: isHoveringSpecialText ? 'transparent' : 'white',
+                border: isHoveringSpecialText ? '2px solid black' : 'none',
+                mixBlendMode: isHoveringSpecialText ? 'normal' : 'difference',
             }}
             aria-hidden="true"
         />
@@ -75,7 +91,7 @@ export default function App() {
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
         <div className="w-1/2 flex flex-col pr-8">
-          <div className="flex justify-between text-xs text-gray-500 py-4">
+          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text">
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -105,7 +121,7 @@ export default function App() {
             
             {/* Bottom content block */}
             <div className="flex justify-end">
-              <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left">
+              <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left gray-text">
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -114,7 +130,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
-          <div className="flex justify-between text-xs text-gray-500 py-4">
+          <div className="flex justify-between text-xs text-gray-600 py-4 gray-text">
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
