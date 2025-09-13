@@ -5,6 +5,17 @@ import { FaceIcon2 } from './components/icons/FaceIcon2'; // Angry
 import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 import { DarkModeToggle } from './components/DarkModeToggle';
 
+// The ViewTransition API is not yet in standard TS libs, so we declare it here.
+declare global {
+  interface Document {
+    startViewTransition?(callback: () => void): ViewTransition;
+  }
+
+  interface ViewTransition {
+    ready: Promise<void>;
+  }
+}
+
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
@@ -35,6 +46,50 @@ export default function App() {
       });
     };
   }, []);
+
+  const handleThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Fallback for browsers that don't support the API
+    if (!document.startViewTransition) {
+      setIsDarkMode(!isDarkMode);
+      return;
+    }
+
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+    // Animate from the center of the button
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    // Calculate the radius to cover the entire screen
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    // Start the transition
+    const transition = document.startViewTransition(() => {
+      setIsDarkMode(prev => !prev);
+    });
+
+    // Wait for the new DOM to be ready
+    transition.ready.then(() => {
+      // Animate the reveal effect
+      document.documentElement.animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 700,
+          easing: 'ease-in-out',
+          // Specify the pseudo-element to animate
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
+    });
+  };
 
   const cursorSize = isHoveringLink ? 60 : 40;
 
@@ -73,7 +128,7 @@ export default function App() {
             <LightningIcon className="h-6 text-red-600" />
             <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
           </div>
-          <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
+          <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
         <nav className="flex gap-8 text-lg">
           <a href="#" className="hover:underline">PROJECTS</a>
