@@ -1,106 +1,128 @@
-// FIX: Replaced placeholder content with a fully functional React component for a Gemini API explorer UI. This resolves multiple 'Cannot find name' errors and fixes the 'not a module' error in index.tsx by providing a default export.
-import React, { useState } from 'react';
-import { GoogleGenAI, GenerateContentResponse } from '@google/genai';
-import { FaceIcon1 } from './components/icons/FaceIcon1';
-import { FaceIcon2 } from './components/icons/FaceIcon2';
-import { FaceIcon3 } from './components/icons/FaceIcon3';
+import React, { useState, useEffect } from 'react';
 import { LightningIcon } from './components/icons/LightningIcon';
-import CustomCursor from './components/CustomCursor';
+import { FaceIcon1 } from './components/icons/FaceIcon1'; // Smirk
+import { FaceIcon2 } from './components/icons/FaceIcon2'; // Angry
+import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 
-const App: React.FC = () => {
-  const [prompt, setPrompt] = useState('');
-  const [response, setResponse] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+export default function App() {
+  const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
+  const [isHoveringLink, setIsHoveringLink] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setResponse('');
-    setError('');
-    try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
-      const result: GenerateContentResponse = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: prompt,
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setCursorPosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    const interactiveElements = document.querySelectorAll('a, button');
+    
+    const handleMouseEnter = () => setIsHoveringLink(true);
+    const handleMouseLeave = () => setIsHoveringLink(false);
+
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', handleMouseEnter);
+      el.addEventListener('mouseleave', handleMouseLeave);
+    });
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      interactiveElements.forEach(el => {
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
       });
-      setResponse(result.text);
-    } catch (err) {
-      console.error(err);
-      if (err instanceof Error) {
-        setError(`An error occurred: ${err.message}`);
-      } else {
-        setError('An unknown error occurred. Please check the console.');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+  }, []);
+
+  const cursorSize = isHoveringLink ? 48 : 32;
 
   return (
-    <>
-      <CustomCursor />
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 font-sans">
-        <header className="text-center mb-8">
-            <h1 className="text-5xl font-bold text-gray-800 mb-2">Gemini API Explorer</h1>
-            <p className="text-lg text-gray-600">Bring your ideas to life</p>
-        </header>
-        
-        <div className="flex space-x-6 mb-8">
-            <FaceIcon1 className="w-16 h-16 text-gray-500 hover:text-blue-500 transition-colors" />
-            <FaceIcon2 className="w-16 h-16 text-gray-500 hover:text-green-500 transition-colors" />
-            <FaceIcon3 className="w-16 h-16 text-gray-500 hover:text-red-500 transition-colors" />
-            <LightningIcon className="w-16 h-16 text-gray-500 hover:text-yellow-500 transition-colors" />
+    <div 
+      className="bg-[#efeeee] min-h-screen flex flex-col font-sans px-16 pt-8 text-black"
+      style={{ cursor: 'none' }}
+      >
+        <div
+            style={{
+                position: 'fixed',
+                top: cursorPosition.y,
+                left: cursorPosition.x,
+                width: `${cursorSize}px`,
+                height: `${cursorSize}px`,
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                pointerEvents: 'none',
+                transform: 'translate(-50%, -50%)',
+                mixBlendMode: 'difference',
+                zIndex: 9999,
+                transition: 'width 0.2s ease-in-out, height 0.2s ease-in-out',
+            }}
+            aria-hidden="true"
+        />
+      {/* Top Bar */}
+      <header className="flex justify-between items-center py-4 border-b border-black">
+        <div className="flex items-center gap-2">
+          <LightningIcon className="h-6 text-red-600" />
+          <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
         </div>
+        <nav className="flex gap-8 text-lg">
+          <a href="#" className="hover:underline">PROJECTS</a>
+          <a href="#" className="hover:underline">SKILLS</a>
+          <a href="#" className="hover:underline">LET'S CONNECT</a>
+        </nav>
+      </header>
 
-        <main className="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8">
-          <form onSubmit={handleSubmit}>
-            <div className="flex flex-col">
-              <label htmlFor="prompt-input" className="mb-2 font-semibold text-gray-700">Enter your prompt</label>
-              <textarea
-                id="prompt-input"
-                className="p-4 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
-                rows={5}
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="e.g., Write a poem about a robot learning to paint"
-              />
-              <button
-                type="submit"
-                disabled={loading || !prompt.trim()}
-                className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all flex items-center justify-center"
-              >
-                {loading ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Generating...
-                  </>
-                ) : 'Generate'}
-              </button>
-            </div>
-          </form>
-          
-          {error && (
-            <div className="mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-              <p>{error}</p>
-            </div>
-          )}
+      {/* Main Content */}
+      <main className="flex flex-1 divide-x divide-black">
+        {/* Left Side */}
+        <div className="w-1/2 flex flex-col pr-8">
+          <div className="flex justify-between text-xs text-gray-500 py-4">
+            <span>00 TITLE</span>
+            <span>/00</span>
+          </div>
+          <div className="flex-1 flex flex-col justify-between py-12">
+            {/* Top content block */}
+            <div>
+              <h1 className="text-5xl font-light leading-tight mb-6 text-left">
+                FROM MERN TO WEB3 <br /> ALWAYS EXPLORING.
+              </h1>
 
-          {response && (
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Response</h2>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-gray-700 whitespace-pre-wrap font-mono">{response}</p>
+              {/* Emoji Row */}
+              <div className="flex items-center justify-start gap-4 mb-10">
+                <span className="flex items-center gap-1">
+                  <LightningIcon className="w-6 h-6" />
+                  <FaceIcon1 className="w-10 h-10" />
+                </span>
+                <span className="flex items-center gap-1">
+                  <LightningIcon className="w-6 h-6" />
+                  <FaceIcon2 className="w-10 h-10" />
+                </span>
+                <span className="flex items-center gap-1">
+                  <LightningIcon className="w-6 h-6" />
+                  <FaceIcon3 className="w-10 h-10" />
+                </span>
               </div>
             </div>
-          )}
-        </main>
-      </div>
-    </>
-  );
-};
+            
+            {/* Bottom content block */}
+            <div className="flex justify-end">
+              <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left">
+                Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
+              </p>
+            </div>
+          </div>
+        </div>
 
-export default App;
+        {/* Right Side */}
+        <div className="w-1/2 flex flex-col pl-8">
+          <div className="flex justify-between text-xs text-gray-500 py-4">
+            <span>01 LOGO</span>
+            <span>/01</span>
+          </div>
+          <div className="flex-1 flex justify-end items-end py-12">
+             <LightningIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
