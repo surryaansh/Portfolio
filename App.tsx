@@ -153,7 +153,7 @@ export default function App() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <LightningIcon className="h-6 text-[#FF4500]" />
-            <span className="font-bold text-[#FF4500] tracking-wide">SURYANSH // SINGH</span>
+            <span className="font-extrabold italic text-[#FF4500] tracking-wide">SURYANSH // SINGH</span>
           </div>
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
