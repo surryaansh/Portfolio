@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { LightningIcon } from './components/icons/LightningIcon';
 import { ReactIcon } from './components/icons/ReactIcon';
-import { FaceIcon2 } from './components/icons/FaceIcon2'; // Angry
-import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
+import { NodeJsIcon } from './components/icons/NodeJsIcon';
+import { EthIcon } from './components/icons/EthIcon';
 import { DarkModeToggle } from './components/DarkModeToggle';
 
 // The ViewTransition API is not yet in standard TS libs, so we declare it here.
@@ -162,18 +162,12 @@ export default function App() {
 
               {/* Emoji Row */}
               <div className="flex items-center justify-start gap-4 mb-10">
-                <span className="flex items-center gap-1">
-                  <LightningIcon className="w-6 h-6" />
-                  <ReactIcon className="w-10 h-10" />
-                </span>
-                <span className="flex items-center gap-1">
-                  <LightningIcon className="w-6 h-6" />
-                  <FaceIcon2 className="w-10 h-10" />
-                </span>
-                <span className="flex items-center gap-1">
-                  <LightningIcon className="w-6 h-6" />
-                  <FaceIcon3 className="w-10 h-10" />
-                </span>
+                <LightningIcon className="w-6 h-6" />
+                <ReactIcon className="w-10 h-10" />
+                <LightningIcon className="w-6 h-6" />
+                <NodeJsIcon className="w-10 h-10" />
+                <LightningIcon className="w-6 h-6" />
+                <EthIcon className="w-10 h-10" />
               </div>
             </div>
             
