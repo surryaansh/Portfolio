@@ -55,7 +55,7 @@ export default function App() {
     };
   }, []);
 
-  const cursorSize = isHoveringLink ? 48 : 32;
+  const cursorSize = isHoveringLink ? 60 : 40;
 
   return (
     <div 
