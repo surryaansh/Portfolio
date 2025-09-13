@@ -25,7 +25,8 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col p-12">
+        <div className="w-1/2 flex flex-col justify-between p-12">
+          {/* Top content block */}
           <div>
             <h1 className="text-5xl font-light leading-tight mb-6">
               WE’RE SHAPING <br /> WEB3 AND AI.
@@ -47,16 +48,18 @@ const App: React.FC = () => {
               </span>
             </div>
           </div>
+          
+          {/* Bottom content block - aligned to the right side of this panel */}
+          <div className="self-end text-left">
+            <p className="text-gray-600 max-w-md text-sm leading-relaxed">
+              Not with frameworks, but with first principles and fresh architecture. Everything we touch is engineered with care and real-world pressure in mind. Because deep tech deserves deep work.
+            </p>
+          </div>
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex flex-col justify-end p-12">
-           <div className="flex justify-between items-end gap-4">
-              <p className="text-gray-600 max-w-md text-sm leading-relaxed">
-                Not with frameworks, but with first principles and fresh architecture. Everything we touch is engineered with care and real-world pressure in mind. Because deep tech deserves deep work.
-              </p>
-              <LargeLogoIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
-           </div>
+        <div className="w-1/2 flex justify-end items-end p-12">
+           <LargeLogoIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
         </div>
       </main>
     </div>
