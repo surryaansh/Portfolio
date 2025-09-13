@@ -152,8 +152,8 @@ export default function App() {
       <header className={`flex justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <LightningIcon className="h-6 text-[#FF4500]" />
-            <span className="font-bold text-[#FF4500] tracking-wide">SURYANSH // SINGH</span>
+            <LightningIcon className="h-6 text-[#F44336]" />
+            <span className="font-bold text-[#F44336] tracking-wide">SURYANSH // SINGH</span>
           </div>
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
@@ -206,7 +206,7 @@ export default function App() {
             <span>/01</span>
           </div>
           <div className="flex-1 flex justify-end items-end py-12">
-             <FilledLightningIcon className="w-40 h-40 object-contain text-[#FF4500] flex-shrink-0" />
+             <FilledLightningIcon className="w-40 h-40 object-contain text-[#F44336] flex-shrink-0" />
           </div>
         </div>
       </main>
