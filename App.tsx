@@ -1,7 +1,7 @@
 import React from 'react';
 import { LogoIcon } from './components/icons/LogoIcon';
 import { LargeLogoIcon } from './components/icons/LargeLogoIcon';
-import { SparkleIcon } from './components/icons/SparkleIcon';
+import { LightningIcon } from './components/icons/LightningIcon';
 import { FaceIcon1 } from './components/icons/FaceIcon1'; // Smirk
 import { FaceIcon2 } from './components/icons/FaceIcon2'; // Angry
 import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
@@ -13,7 +13,7 @@ export default function App() {
       <header className="flex justify-between items-center py-4 border-b border-black">
         <div className="flex items-center gap-2">
           <LogoIcon className="h-6 text-red-600" />
-          <span className="font-bold text-red-600 tracking-wide">SURYANSH // DEV</span>
+          <span className="font-bold text-red-600 tracking-wide">SURYANSH // SINGH</span>
         </div>
         <nav className="flex gap-8 text-lg">
           <a href="#" className="hover:underline">PROJECTS</a>
@@ -35,15 +35,15 @@ export default function App() {
             {/* Emoji Row */}
             <div className="flex items-center justify-start gap-4 mb-10">
               <span className="flex items-center gap-1">
-                <SparkleIcon className="w-6 h-6" />
+                <LightningIcon className="w-6 h-6" />
                 <FaceIcon1 className="w-10 h-10" />
               </span>
               <span className="flex items-center gap-1">
-                <SparkleIcon className="w-6 h-6" />
+                <LightningIcon className="w-6 h-6" />
                 <FaceIcon2 className="w-10 h-10" />
               </span>
               <span className="flex items-center gap-1">
-                <SparkleIcon className="w-6 h-6" />
+                <LightningIcon className="w-6 h-6" />
                 <FaceIcon3 className="w-10 h-10" />
               </span>
             </div>
