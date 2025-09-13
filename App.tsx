@@ -8,7 +8,7 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 
 export default function App() {
   return (
-    <div className="bg-[#efeeee] min-h-screen flex flex-col font-sans px-16 pt-8 text-black">
+    <div className="bg-[#efeeee] min-h-screen flex flex-col font-Inter px-16 pt-8 text-black">
       {/* Top Bar */}
       <header className="flex justify-between items-center py-4 border-b border-black">
         <div className="flex items-center gap-2">
