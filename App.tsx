@@ -13,12 +13,12 @@ export default function App() {
       <header className="flex justify-between items-center py-4 border-b border-black">
         <div className="flex items-center gap-2">
           <LogoIcon className="h-6 text-red-600" />
-          <span className="font-bold text-red-600 tracking-wide">SURYANSH</span>
+          <span className="font-bold text-red-600 tracking-wide">SURYANSH // DEV</span>
         </div>
         <nav className="flex gap-8 text-lg">
-          <a href="#" className="hover:underline">WORK</a>
-          <a href="#" className="hover:underline">CAREERS</a>
-          <a href="#" className="hover:underline">CONTACT</a>
+          <a href="#" className="hover:underline">PROJECTS</a>
+          <a href="#" className="hover:underline">SKILLS</a>
+          <a href="#" className="hover:underline">LET'S CONNECT</a>
         </nav>
       </header>
 
@@ -29,7 +29,7 @@ export default function App() {
           {/* Top content block */}
           <div>
             <h1 className="text-5xl font-light leading-tight mb-6 text-left">
-              WE’RE SHAPING <br /> WEB3 AND AI.
+              FROM MERN TO WEB3 <br /> ALWAYS EXPLORING.
             </h1>
 
             {/* Emoji Row */}
@@ -52,7 +52,7 @@ export default function App() {
           {/* Bottom content block */}
           <div className="flex justify-end">
             <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left">
-              Not with frameworks, but with first principles and fresh architecture. Everything we touch is engineered with care and real-world pressure in mind. Because deep tech deserves deep work.
+              Not just another portfolio, this is my journey in code. From MERN apps to smart contracts, I code, for growth.
             </p>
           </div>
         </div>
