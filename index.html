@@ -12,7 +12,10 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
-        user-select: none; /* Prevent text selection */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* IE10+/Edge */
+        user-select: none;         /* Standard */
       }
       /* Ensure custom cursor is used everywhere */
       a, button {
