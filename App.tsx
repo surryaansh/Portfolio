@@ -52,7 +52,7 @@ export default function App() {
           {/* Bottom content block */}
           <div className="flex justify-end">
             <p className="text-gray-600 max-w-md text-sm leading-relaxed text-left">
-              Not just another portfolio, this is my journey in code. From MERN apps to smart contracts, I code, for growth.
+              Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
             </p>
           </div>
         </div>
