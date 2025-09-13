@@ -8,9 +8,9 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 
 const App: React.FC = () => {
   return (
-    <div className="bg-[#fcf5f8] min-h-screen flex flex-col font-sans p-8 pb-0">
+    <div className="bg-[#f7f5f6] min-h-screen flex flex-col font-sans px-16 pt-8">
       {/* Top Bar */}
-      <header className="flex justify-between items-center px-6 py-4 border-b border-black">
+      <header className="flex justify-between items-center py-4 border-b border-black">
         <div className="flex items-center gap-2">
           <LogoIcon className="h-6 text-red-600" />
           <span className="font-bold text-red-600 tracking-wide">HASHIRA</span>
@@ -25,7 +25,7 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col justify-between p-12">
+        <div className="w-1/2 flex flex-col justify-between py-12 pr-12">
           {/* Top content block */}
           <div>
             <h1 className="text-5xl font-light leading-tight mb-6 text-left">
@@ -58,7 +58,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex justify-end items-end p-12">
+        <div className="w-1/2 flex justify-end items-end py-12 pl-12">
            <LargeLogoIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
         </div>
       </main>
