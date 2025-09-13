@@ -8,7 +8,7 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 
 const App: React.FC = () => {
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col font-sans p-8 pb-0">
+    <div className="bg-[#fcf5f8] min-h-screen flex flex-col font-sans p-8 pb-0">
       {/* Top Bar */}
       <header className="flex justify-between items-center px-6 py-4 border-b border-black">
         <div className="flex items-center gap-2">
@@ -25,15 +25,15 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col justify-between py-12 pl-12 pr-4">
+        <div className="w-1/2 flex flex-col justify-between p-12">
           {/* Top content block */}
           <div>
-            <h1 className="text-5xl font-light leading-tight mb-6 text-right">
+            <h1 className="text-5xl font-light leading-tight mb-6 text-left">
               WE’RE SHAPING <br /> WEB3 AND AI.
             </h1>
 
             {/* Emoji Row */}
-            <div className="flex items-center justify-end gap-4 mb-10">
+            <div className="flex items-center justify-start gap-4 mb-10">
               <span className="flex items-center gap-1">
                 <SparkleIcon className="w-6 h-6" />
                 <FaceIcon1 className="w-10 h-10" />
@@ -49,8 +49,8 @@ const App: React.FC = () => {
             </div>
           </div>
           
-          {/* Bottom content block - aligned to the right side of this panel */}
-          <div className="self-end text-left">
+          {/* Bottom content block */}
+          <div>
             <p className="text-gray-600 max-w-md text-sm leading-relaxed">
               Not with frameworks, but with first principles and fresh architecture. Everything we touch is engineered with care and real-world pressure in mind. Because deep tech deserves deep work.
             </p>
@@ -58,7 +58,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex justify-end items-end py-12 pr-12 pl-4">
+        <div className="w-1/2 flex justify-end items-end p-12">
            <LargeLogoIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
         </div>
       </main>
