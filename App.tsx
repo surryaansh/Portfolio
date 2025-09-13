@@ -167,7 +167,7 @@ export default function App() {
                 <LightningIcon className="w-6 h-6" />
                 <NodeJsIcon className="w-10 h-10" />
                 <LightningIcon className="w-6 h-6" />
-                <EthIcon className="w-10 h-10" />
+                <EthIcon className="w-[2.625rem] h-[2.625rem]" />
               </div>
             </div>
             
