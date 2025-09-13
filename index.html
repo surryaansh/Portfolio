@@ -12,10 +12,11 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
+        user-select: none; /* Prevent text selection */
       }
       /* Ensure custom cursor is used everywhere */
       a, button {
-        cursor: none;
+        cursor: none !important; /* Use !important to override defaults */
       }
     </style>
   <script type="importmap">
