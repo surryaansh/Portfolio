@@ -20,6 +20,7 @@ export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -66,6 +67,7 @@ export default function App() {
       Math.max(y, window.innerHeight - y)
     );
 
+    setIsTransitioning(true);
     // Start the transition
     const transition = document.startViewTransition(() => {
       setIsDarkMode(prev => !prev);
@@ -74,7 +76,7 @@ export default function App() {
     // Wait for the new DOM to be ready
     transition.ready.then(() => {
       // Animate the reveal effect
-      document.documentElement.animate(
+      const animation = document.documentElement.animate(
         {
           clipPath: [
             `circle(0px at ${x}px ${y}px)`,
@@ -88,6 +90,10 @@ export default function App() {
           pseudoElement: '::view-transition-new(root)',
         }
       );
+      // When animation is done, re-enable custom cursor
+      animation.finished.then(() => {
+        setIsTransitioning(false);
+      });
     });
   };
 
@@ -102,25 +108,27 @@ export default function App() {
   return (
     <div 
       className={`min-h-screen flex flex-col font-sans px-16 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
-      style={{ cursor: 'none' }}
+      style={{ cursor: isTransitioning ? 'auto' : 'none' }}
       >
-        <div
-            style={{
-                position: 'fixed',
-                top: cursorPosition.y,
-                left: cursorPosition.x,
-                width: `${cursorSize}px`,
-                height: `${cursorSize}px`,
-                borderRadius: '50%',
-                pointerEvents: 'none',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 9999,
-                transition: 'width 0.2s ease, height 0.2s ease',
-                backgroundColor: 'white',
-                mixBlendMode: 'difference',
-            }}
-            aria-hidden="true"
-        />
+        {!isTransitioning && (
+            <div
+                style={{
+                    position: 'fixed',
+                    top: cursorPosition.y,
+                    left: cursorPosition.x,
+                    width: `${cursorSize}px`,
+                    height: `${cursorSize}px`,
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 9999,
+                    transition: 'width 0.2s ease, height 0.2s ease',
+                    backgroundColor: 'white',
+                    mixBlendMode: 'difference',
+                }}
+                aria-hidden="true"
+            />
+        )}
       {/* Top Bar */}
       <header className={`flex justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
         <div className="flex items-center gap-4">
