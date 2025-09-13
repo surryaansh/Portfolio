@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { LightningIcon } from './components/icons/LightningIcon';
-import { ReactIcon } from './components/icons/ReactIcon';
-import { NodeJsIcon } from './components/icons/NodeJsIcon';
-import { EthIcon } from './components/icons/EthIcon';
-import { DarkModeToggle } from './components/DarkModeToggle';
+import { LightningIcon } from './components/icons/LightningIcon.tsx';
+import { ReactIcon } from './components/icons/ReactIcon.tsx';
+import { NodeJsIcon } from './components/icons/NodeJsIcon.tsx';
+import { EthIcon } from './components/icons/EthIcon.tsx';
+import { DarkModeToggle } from './components/DarkModeToggle.tsx';
 
 // The ViewTransition API is not yet in standard TS libs, so we declare it here.
 declare global {
