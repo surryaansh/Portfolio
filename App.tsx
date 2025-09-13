@@ -23,12 +23,12 @@ export default function App() {
       {/* Main Content */}
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col">
-          <div className="flex justify-between text-xs text-gray-500 p-4">
+        <div className="w-1/2 flex flex-col pr-8">
+          <div className="flex justify-between text-xs text-gray-500 py-4">
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
-          <div className="flex-1 flex flex-col justify-between p-12">
+          <div className="flex-1 flex flex-col justify-between py-12">
             {/* Top content block */}
             <div>
               <h1 className="text-5xl font-light leading-tight mb-6 text-left">
@@ -62,12 +62,12 @@ export default function App() {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex flex-col">
-          <div className="flex justify-between text-xs text-gray-500 p-4">
+        <div className="w-1/2 flex flex-col pl-8">
+          <div className="flex justify-between text-xs text-gray-500 py-4">
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
-          <div className="flex-1 flex justify-end items-end p-12">
+          <div className="flex-1 flex justify-end items-end py-12">
              <LightningIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
           </div>
         </div>
