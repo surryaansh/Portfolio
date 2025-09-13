@@ -8,7 +8,7 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 
 const App: React.FC = () => {
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col font-sans">
+    <div className="bg-gray-50 min-h-screen flex flex-col font-sans p-8 pb-0">
       {/* Top Bar */}
       <header className="flex justify-between items-center px-6 py-4 border-b border-black">
         <div className="flex items-center gap-2">
