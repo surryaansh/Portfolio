@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { LogoIcon } from './components/icons/LogoIcon';
 import { LargeLogoIcon } from './components/icons/LargeLogoIcon';
-import { SparkleIcon } from './components/icons/SparkleIcon';
+import { PlusIcon } from './components/icons/PlusIcon';
 import { FaceIcon1 } from './components/icons/FaceIcon1';
 import { FaceIcon2 } from './components/icons/FaceIcon2';
 
@@ -13,9 +12,9 @@ const App: React.FC = () => {
       <header className="flex flex-col md:flex-row justify-between md:items-center w-full pb-4">
         <div className="flex items-center space-x-3 mb-4 md:mb-0">
           <LogoIcon className="w-8 h-8" />
-          <span className="text-2xl font-normal tracking-[0.2em]">HASHIRA</span>
+          <span className="text-2xl font-normal tracking-[0.3em]">HASHIRA</span>
         </div>
-        <nav className="flex items-center space-x-6 sm:space-x-8 text-sm sm:text-base font-normal tracking-[0.2em]">
+        <nav className="flex items-center space-x-6 sm:space-x-8 text-sm sm:text-base font-normal tracking-[0.25em]">
           <a href="#" className="hover:text-[#FF4D4D] transition-colors">WORK</a>
           <a href="#" className="hover:text-[#FF4D4D] transition-colors">CAREERS</a>
           <a href="#" className="hover:text-[#FF4D4D] transition-colors">CONTACT</a>
@@ -32,17 +31,17 @@ const App: React.FC = () => {
           </div>
           
           <div className="my-16">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl leading-tight tracking-wide font-normal">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl leading-tight tracking-wider font-normal">
               WE'RE SHAPING
               <br />
               WEB3 AND AI.
             </h1>
             <div className="flex items-center space-x-4 mt-8">
-              <SparkleIcon className="w-8 h-8" />
+              <PlusIcon className="w-8 h-8" />
               <FaceIcon1 className="w-12 h-12" />
-              <SparkleIcon className="w-8 h-8" />
+              <PlusIcon className="w-8 h-8" />
               <FaceIcon2 className="w-12 h-12" />
-              <SparkleIcon className="w-8 h-8" />
+              <PlusIcon className="w-8 h-8" />
               <FaceIcon1 className="w-12 h-12" />
             </div>
           </div>
