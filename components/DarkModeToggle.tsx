@@ -22,7 +22,7 @@ export const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ isDarkMode, togg
       <MoonIcon className={`absolute left-2 w-4 h-4 text-blue-300 transition-opacity duration-300 ${isDarkMode ? 'opacity-100' : 'opacity-0'}`} />
       
       {/* Sun icon is on the right, visible in light mode */}
-      <SunIcon className={`absolute right-2 w-4 h-4 text-yellow-500 transition-opacity duration-300 ${isDarkMode ? 'opacity-0' : 'opacity-100'}`} />
+      <SunIcon className={`absolute right-2 w-4 h-4 text-white transition-opacity duration-300 ${isDarkMode ? 'opacity-0' : 'opacity-100'}`} />
       
       {/* Sliding thumb */}
       <span
