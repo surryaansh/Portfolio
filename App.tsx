@@ -13,7 +13,7 @@ export default function App() {
       <header className="flex justify-between items-center py-4 border-b border-black">
         <div className="flex items-center gap-2">
           <LogoIcon className="h-6 text-red-600" />
-          <span className="font-bold text-red-600 tracking-wide">HASHIRA</span>
+          <span className="font-bold text-red-600 tracking-wide">SURYANSH</span>
         </div>
         <nav className="flex gap-8 text-lg">
           <a href="#" className="hover:underline">WORK</a>
