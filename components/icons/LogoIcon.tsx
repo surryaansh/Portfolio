@@ -10,7 +10,7 @@ export const LogoIcon: React.FC<IconProps> = ({ className }) => {
       viewBox="0 0 100 100" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      fill="#FF4D4D"
+      fill="currentColor"
     >
       <path d="M50 0 L61.8 38.2 L100 50 L61.8 61.8 L50 100 L38.2 61.8 L0 50 L38.2 38.2 Z" />
     </svg>
