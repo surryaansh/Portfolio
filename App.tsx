@@ -7,7 +7,6 @@ import { FaceIcon3 } from './components/icons/FaceIcon3'; // Neutral
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
-  const [isHoveringSpecialText, setIsHoveringSpecialText] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -22,8 +21,16 @@ export default function App() {
     const handleLinkEnter = () => setIsHoveringLink(true);
     const handleLinkLeave = () => setIsHoveringLink(false);
 
-    const handleSpecialTextEnter = () => setIsHoveringSpecialText(true);
-    const handleSpecialTextLeave = () => setIsHoveringSpecialText(false);
+    const handleSpecialTextEnter = (event: Event) => {
+      if (event.currentTarget instanceof HTMLElement) {
+        event.currentTarget.style.color = 'black';
+      }
+    };
+    const handleSpecialTextLeave = (event: Event) => {
+      if (event.currentTarget instanceof HTMLElement) {
+        event.currentTarget.style.color = '';
+      }
+    };
 
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', handleLinkEnter);
@@ -66,11 +73,9 @@ export default function App() {
                 pointerEvents: 'none',
                 transform: 'translate(-50%, -50%)',
                 zIndex: 9999,
-                transition: 'width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border 0.2s ease',
-                boxSizing: 'border-box',
-                backgroundColor: isHoveringSpecialText ? 'transparent' : 'white',
-                border: isHoveringSpecialText ? '2px solid black' : 'none',
-                mixBlendMode: isHoveringSpecialText ? 'normal' : 'difference',
+                transition: 'width 0.2s ease, height 0.2s ease',
+                backgroundColor: 'white',
+                mixBlendMode: 'difference',
             }}
             aria-hidden="true"
         />
