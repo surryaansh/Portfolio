@@ -24,7 +24,7 @@ export default function App() {
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
         <div className="w-1/2 flex flex-col">
-          <div className="flex justify-between text-xs text-gray-500 p-4 border-b border-black">
+          <div className="flex justify-between text-xs text-gray-500 p-4">
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -63,7 +63,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-1/2 flex flex-col">
-          <div className="flex justify-between text-xs text-gray-500 p-4 border-b border-black">
+          <div className="flex justify-between text-xs text-gray-500 p-4">
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
