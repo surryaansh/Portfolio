@@ -157,9 +157,9 @@ export default function App() {
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
         <nav className="flex gap-8 text-lg">
-          <a href="#" className="hover:underline">PROJECTS</a>
-          <a href="#" className="hover:underline">SKILLS</a>
-          <a href="#" className="hover:underline">LET'S CONNECT</a>
+          <a href="#" className="transition-opacity duration-200 hover:opacity-70">PROJECTS</a>
+          <a href="#" className="transition-opacity duration-200 hover:opacity-70">SKILLS</a>
+          <a href="#" className="transition-opacity duration-200 hover:opacity-70">LET'S CONNECT</a>
         </nav>
       </header>
 
