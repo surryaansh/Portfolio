@@ -25,15 +25,15 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex flex-1 divide-x divide-black">
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col justify-between p-12">
+        <div className="w-1/2 flex flex-col justify-between py-12 pl-12 pr-4">
           {/* Top content block */}
           <div>
-            <h1 className="text-5xl font-light leading-tight mb-6">
+            <h1 className="text-5xl font-light leading-tight mb-6 text-right">
               WE’RE SHAPING <br /> WEB3 AND AI.
             </h1>
 
             {/* Emoji Row */}
-            <div className="flex items-center gap-4 mb-10">
+            <div className="flex items-center justify-end gap-4 mb-10">
               <span className="flex items-center gap-1">
                 <SparkleIcon className="w-6 h-6" />
                 <FaceIcon1 className="w-10 h-10" />
@@ -58,7 +58,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex justify-end items-end p-12">
+        <div className="w-1/2 flex justify-end items-end py-12 pr-12 pl-4">
            <LargeLogoIcon className="w-40 h-40 object-contain text-red-600 flex-shrink-0" />
         </div>
       </main>
