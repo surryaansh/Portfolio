@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface IconProps {
@@ -13,16 +12,7 @@ export const LargeLogoIcon: React.FC<IconProps> = ({ className }) => {
       className={className}
       fill="#FF4D4D"
     >
-      <g transform="rotate(-15 60 60)">
-        <path 
-          d="M60 10 L75 45 L110 60 L75 75 L60 110 L45 75 L10 60 L45 45 Z" 
-          transform="translate(5, -5)"
-        />
-        <path 
-          d="M60 10 L75 45 L110 60 L75 75 L60 110 L45 75 L10 60 L45 45 Z"
-          transform="translate(-5, 5)"
-        />
-      </g>
+      <path d="M106.94,50.83,81.47,43.35,93.42,19.5,69.17,29,59.29,5.17,50.83,29,26.58,19.5,38.53,43.35,13.06,50.83,38.53,58.31,26.58,82.16,50.83,72.66,59.29,96.49,69.17,72.66,93.42,82.16,81.47,58.31Z" />
     </svg>
   );
 };

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface IconProps {
@@ -13,12 +12,7 @@ export const LogoIcon: React.FC<IconProps> = ({ className }) => {
       className={className}
       fill="#FF4D4D"
     >
-      <path d="M50 0 L61.8 38.2 L100 50 L61.8 61.8 L50 100 L38.2 61.8 L0 50 L38.2 38.2 Z" 
-        transform="scale(0.85) translate(8, 8)"
-        stroke="#FF4D4D"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
+      <path d="M50 0 L61.8 38.2 L100 50 L61.8 61.8 L50 100 L38.2 61.8 L0 50 L38.2 38.2 Z" />
     </svg>
   );
 };
