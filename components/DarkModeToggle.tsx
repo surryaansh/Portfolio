@@ -2,7 +2,7 @@ import React from 'react';
 
 interface DarkModeToggleProps {
   isDarkMode: boolean;
-  toggleDarkMode: () => void;
+  toggleDarkMode: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ isDarkMode, toggleDarkMode }) => {
