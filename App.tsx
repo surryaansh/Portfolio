@@ -21,6 +21,23 @@ export default function App() {
   const [isHoveringLink, setIsHoveringLink] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [applyCursorFadeIn, setApplyCursorFadeIn] = useState(false);
+
+  useEffect(() => {
+    // This effect handles the fade-in animation for the custom cursor
+    // when it reappears after a theme transition.
+    if (!isTransitioning) {
+      // We use a short timeout to ensure the cursor element is mounted with
+      // initial opacity 0 before we apply the state to transition it to opacity 1.
+      const timer = setTimeout(() => {
+        setApplyCursorFadeIn(true);
+      }, 10); // A minimal delay is enough for the DOM to update.
+      return () => {
+        clearTimeout(timer);
+        setApplyCursorFadeIn(false); // Reset on cleanup
+      };
+    }
+  }, [isTransitioning]);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -122,9 +139,10 @@ export default function App() {
                     pointerEvents: 'none',
                     transform: 'translate(-50%, -50%)',
                     zIndex: 9999,
-                    transition: 'width 0.2s ease, height 0.2s ease',
+                    transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out',
                     backgroundColor: 'white',
                     mixBlendMode: 'difference',
+                    opacity: applyCursorFadeIn ? 1 : 0,
                 }}
                 aria-hidden="true"
             />
