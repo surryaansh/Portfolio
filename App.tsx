@@ -207,12 +207,12 @@ export default function App() {
           </div>
           <div className="flex-1 relative py-12">
             <img 
-                src="https://i.pinimg.com/originals/05/94/05/0594057a705f42a1f1e16b5a19207008.jpg" 
+                src="https://i.imgur.com/80xT5b5.jpeg" 
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
             />
             <FilledLightningIcon 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 text-[#FF4500]"
+              className="absolute bottom-12 right-12 w-40 h-40 text-[#FF4500] transform -rotate-12 transition-transform duration-300 ease-in-out hover:scale-110"
               style={{ mixBlendMode: 'normal' }}
             />
           </div>
