@@ -142,7 +142,7 @@ export default function App() {
                     transform: 'translate(-50%, -50%)',
                     zIndex: 9999,
                     transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
-                    backgroundColor: isHoveringMedia ? '#FF4500' : 'white',
+                    backgroundColor: isHoveringMedia ? 'black' : 'white',
                     mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
                     opacity: applyCursorFadeIn ? 1 : 0,
                 }}
@@ -192,10 +192,10 @@ export default function App() {
             </div>
             
             {/* Bottom content block */}
-            <div className="flex justify-end mb-8">
+            <div className="flex justify-end mb-12">
               <p 
                 className={`max-w-md leading-relaxed text-left ${grayTextClasses}`}
-                style={{ fontSize: '1.06875rem' }}
+                style={{ fontSize: '1.0153rem' }}
               >
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
@@ -206,7 +206,7 @@ export default function App() {
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 EXPERTS</span>
+            <span>01 LOGO</span>
             <span>/01</span>
           </div>
           <div className="flex-1 relative pt-2 pb-12">
@@ -218,8 +218,8 @@ export default function App() {
                 onMouseLeave={() => setIsHoveringMedia(false)}
             />
             <FilledLightningIcon 
-              className="absolute bottom-20 right-10 text-[#FF4500]"
-              style={{ mixBlendMode: 'normal', width: '9.7rem', height: '9.7rem' }}
+              className="absolute bottom-20 right-[11%]"
+              style={{ mixBlendMode: 'normal', width: '9.409rem', height: '9.409rem' }}
               onMouseEnter={() => setIsHoveringMedia(true)}
               onMouseLeave={() => setIsHoveringMedia(false)}
             />
