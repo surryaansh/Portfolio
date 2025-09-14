@@ -20,6 +20,7 @@ declare global {
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [isHoveringMedia, setIsHoveringMedia] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [applyCursorFadeIn, setApplyCursorFadeIn] = useState(false);
@@ -140,9 +141,9 @@ export default function App() {
                     pointerEvents: 'none',
                     transform: 'translate(-50%, -50%)',
                     zIndex: 9999,
-                    transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out',
-                    backgroundColor: 'white',
-                    mixBlendMode: 'difference',
+                    transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
+                    backgroundColor: isHoveringMedia ? '#FF4500' : 'white',
+                    mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
                     opacity: applyCursorFadeIn ? 1 : 0,
                 }}
                 aria-hidden="true"
@@ -172,9 +173,9 @@ export default function App() {
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
-          <div className="flex-1 flex flex-col justify-between py-8">
+          <div className="flex-1 flex flex-col pt-8 pb-12">
             {/* Top content block */}
-            <div>
+            <div className="mb-auto">
               <h1 className="text-5xl font-light leading-tight mb-6 text-left">
                 FROM MERN TO WEB3 <br /> ALWAYS EXPLORING.
               </h1>
@@ -210,10 +211,14 @@ export default function App() {
                 src="/vaporwave-david.png"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
+                onMouseEnter={() => setIsHoveringMedia(true)}
+                onMouseLeave={() => setIsHoveringMedia(false)}
             />
             <FilledLightningIcon 
-              className="absolute bottom-16 right-12 w-40 h-40 text-[#FF4500]"
+              className="absolute bottom-20 right-20 w-40 h-40 text-[#FF4500]"
               style={{ mixBlendMode: 'normal' }}
+              onMouseEnter={() => setIsHoveringMedia(true)}
+              onMouseLeave={() => setIsHoveringMedia(false)}
             />
           </div>
         </div>
