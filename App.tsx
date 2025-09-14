@@ -202,10 +202,10 @@ export default function App() {
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 VISUAL</span>
+            <span>01 LOGO</span>
             <span>/01</span>
           </div>
-          <div className="flex-1 relative py-12">
+          <div className="flex-1 relative pt-4 pb-12">
             <img 
                 src="/vaporwave-david.png"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
