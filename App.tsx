@@ -20,7 +20,6 @@ declare global {
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
-  const [isHoveringMedia, setIsHoveringMedia] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [applyCursorFadeIn, setApplyCursorFadeIn] = useState(false);
@@ -126,7 +125,7 @@ export default function App() {
 
   return (
     <div 
-      className={`min-h-screen flex flex-col font-sans px-16 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
+      className={`min-h-screen flex flex-col font-sans px-8 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
       style={{ cursor: isTransitioning ? 'auto' : 'none' }}
       >
         {!isTransitioning && (
@@ -141,9 +140,9 @@ export default function App() {
                     pointerEvents: 'none',
                     transform: 'translate(-50%, -50%)',
                     zIndex: 9999,
-                    transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
-                    backgroundColor: isHoveringMedia ? 'black' : 'white',
-                    mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
+                    transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out',
+                    background: 'radial-gradient(circle, white 60%, transparent 100%)',
+                    mixBlendMode: 'difference',
                     opacity: applyCursorFadeIn ? 1 : 0,
                 }}
                 aria-hidden="true"
@@ -168,14 +167,14 @@ export default function App() {
       {/* Main Content */}
       <main className={`flex flex-1 divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col pr-8">
+        <div className="w-1/2 flex flex-col pr-4">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
-          <div className="flex-1 flex flex-col pt-8 pb-12">
+          <div className="flex-1 flex flex-col justify-between py-12">
             {/* Top content block */}
-            <div className="mb-auto">
+            <div>
               <h1 className="text-5xl font-light leading-tight mb-6 text-left">
                 FROM MERN TO WEB3 <br /> ALWAYS EXPLORING.
               </h1>
@@ -192,11 +191,8 @@ export default function App() {
             </div>
             
             {/* Bottom content block */}
-            <div className="flex justify-end mb-12">
-              <p 
-                className={`max-w-md leading-relaxed text-left ${grayTextClasses}`}
-                style={{ fontSize: '1.0153rem' }}
-              >
+            <div className="flex justify-end">
+              <p className={`max-w-md text-sm leading- relaxed text-left ${grayTextClasses}`}>
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -204,24 +200,20 @@ export default function App() {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex flex-col pl-8">
+        <div className="w-1/2 flex flex-col pl-4">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 EXPERTS</span>
+            <span>01 VISUAL</span>
             <span>/01</span>
           </div>
-          <div 
-            className="flex-1 relative p-2 pb-12"
-            onMouseEnter={() => setIsHoveringMedia(true)}
-            onMouseLeave={() => setIsHoveringMedia(false)}
-          >
+          <div className="flex-1 relative py-12">
             <img 
-                src="/vaporwave-david.png"
+                src="https://i.ibb.co/ZnD3MfH/vaporwave-david.png"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
             />
             <FilledLightningIcon 
-              className="absolute bottom-20 right-[5%] text-[#FF4500]"
-              style={{ mixBlendMode: 'normal', width: '9.409rem', height: '9.409rem' }}
+              className="absolute bottom-12 right-12 w-40 h-40 text-[#FF4500]"
+              style={{ mixBlendMode: 'normal' }}
             />
           </div>
         </div>
