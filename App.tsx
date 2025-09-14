@@ -202,11 +202,21 @@ export default function App() {
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 LOGO</span>
+            <span>01 VISUAL</span>
             <span>/01</span>
           </div>
-          <div className="flex-1 flex justify-end items-end py-12">
-             <FilledLightningIcon className="w-40 h-40 object-contain text-[#FF4500] flex-shrink-0" />
+          <div className="flex-1 flex flex-col justify-center items-center gap-8 py-12">
+            <FilledLightningIcon 
+              className="w-40 h-40 object-contain text-[#FF4500] flex-shrink-0"
+              style={{ mixBlendMode: 'normal' }}
+            />
+            <div className="w-full px-8">
+              <img 
+                  src="https://i.pinimg.com/originals/05/94/05/0594057a705f42a1f1e16b5a19207008.jpg" 
+                  alt="Vaporwave style statue of David wearing a glowing crown and glasses."
+                  className="w-full h-auto object-cover rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </main>
