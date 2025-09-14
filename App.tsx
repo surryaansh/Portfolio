@@ -209,19 +209,19 @@ export default function App() {
             <span>01 EXPERTS</span>
             <span>/01</span>
           </div>
-          <div className="flex-1 relative pt-2 pb-12">
+          <div 
+            className="flex-1 relative pt-2 pb-12"
+            onMouseEnter={() => setIsHoveringMedia(true)}
+            onMouseLeave={() => setIsHoveringMedia(false)}
+          >
             <img 
                 src="/vaporwave-david.png"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
-                onMouseEnter={() => setIsHoveringMedia(true)}
-                onMouseLeave={() => setIsHoveringMedia(false)}
             />
             <FilledLightningIcon 
-              className="absolute bottom-20 right-[10%] text-[#FF4500]"
+              className="absolute bottom-20 right-[6%] text-[#FF4500]"
               style={{ mixBlendMode: 'normal', width: '9.409rem', height: '9.409rem' }}
-              onMouseEnter={() => setIsHoveringMedia(true)}
-              onMouseLeave={() => setIsHoveringMedia(false)}
             />
           </div>
         </div>
