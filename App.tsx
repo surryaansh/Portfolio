@@ -5,6 +5,7 @@ import { NodeJsIcon } from './components/icons/NodeJsIcon.tsx';
 import { EthIcon } from './components/icons/EthIcon.tsx';
 import { DarkModeToggle } from './components/DarkModeToggle.tsx';
 import { FilledLightningIcon } from './components/icons/FilledLightningIcon.tsx';
+import { vaporwaveDavidImage } from './assets/VaporwaveDavidImage.ts';
 
 // The ViewTransition API is not yet in standard TS libs, so we declare it here.
 declare global {
@@ -207,12 +208,12 @@ export default function App() {
           </div>
           <div className="flex-1 relative py-12">
             <img 
-                src="https://i.imgur.com/80xT5b5.jpeg" 
+                src={vaporwaveDavidImage} 
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
             />
             <FilledLightningIcon 
-              className="absolute bottom-12 right-12 w-40 h-40 text-[#FF4500] transform -rotate-12 transition-transform duration-300 ease-in-out hover:scale-110"
+              className="absolute bottom-12 right-12 w-40 h-40 text-[#FF4500]"
               style={{ mixBlendMode: 'normal' }}
             />
           </div>
