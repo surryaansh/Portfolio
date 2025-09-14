@@ -172,7 +172,7 @@ export default function App() {
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
-          <div className="flex-1 flex flex-col justify-between py-12">
+          <div className="flex-1 flex flex-col justify-between py-8">
             {/* Top content block */}
             <div>
               <h1 className="text-5xl font-light leading-tight mb-6 text-left">
@@ -192,7 +192,7 @@ export default function App() {
             
             {/* Bottom content block */}
             <div className="flex justify-end">
-              <p className={`max-w-md text-sm leading- relaxed text-left ${grayTextClasses}`}>
+              <p className={`max-w-md text-base leading-relaxed text-left ${grayTextClasses}`}>
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -202,17 +202,17 @@ export default function App() {
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 LOGO</span>
+            <span>01 EXPERTS</span>
             <span>/01</span>
           </div>
-          <div className="flex-1 relative pt-4 pb-12">
+          <div className="flex-1 relative pt-2 pb-12">
             <img 
                 src="/vaporwave-david.png"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
             />
             <FilledLightningIcon 
-              className="absolute bottom-12 right-12 w-40 h-40 text-[#FF4500]"
+              className="absolute bottom-16 right-12 w-40 h-40 text-[#FF4500]"
               style={{ mixBlendMode: 'normal' }}
             />
           </div>
