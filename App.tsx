@@ -192,8 +192,8 @@ export default function App() {
             </div>
             
             {/* Bottom content block */}
-            <div className="flex justify-end">
-              <p className={`max-w-md text-base leading-relaxed text-left ${grayTextClasses}`}>
+            <div className="flex justify-end mb-4">
+              <p className={`max-w-md text-lg leading-relaxed text-left ${grayTextClasses}`}>
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
               </p>
             </div>
@@ -215,7 +215,7 @@ export default function App() {
                 onMouseLeave={() => setIsHoveringMedia(false)}
             />
             <FilledLightningIcon 
-              className="absolute bottom-20 right-20 w-40 h-40 text-[#FF4500]"
+              className="absolute bottom-20 right-16 w-40 h-40 text-[#FF4500]"
               style={{ mixBlendMode: 'normal' }}
               onMouseEnter={() => setIsHoveringMedia(true)}
               onMouseLeave={() => setIsHoveringMedia(false)}
