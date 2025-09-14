@@ -206,7 +206,7 @@ export default function App() {
         {/* Right Side */}
         <div className="w-1/2 flex flex-col pl-8">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 LOGO</span>
+            <span>01 EXPERTS</span>
             <span>/01</span>
           </div>
           <div className="flex-1 relative pt-2 pb-12">
@@ -218,7 +218,7 @@ export default function App() {
                 onMouseLeave={() => setIsHoveringMedia(false)}
             />
             <FilledLightningIcon 
-              className="absolute bottom-20 right-[11%]"
+              className="absolute bottom-20 right-[10%] text-[#FF4500]"
               style={{ mixBlendMode: 'normal', width: '9.409rem', height: '9.409rem' }}
               onMouseEnter={() => setIsHoveringMedia(true)}
               onMouseLeave={() => setIsHoveringMedia(false)}
