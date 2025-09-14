@@ -207,7 +207,7 @@ export default function App() {
           </div>
           <div className="flex-1 relative py-12">
             <img 
-                src="https://i.ibb.co/ZnD3MfH/vaporwave-david.png"
+                src="https://ibb.co/ZnD3MfH"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
                 className="w-full h-full object-cover"
             />
