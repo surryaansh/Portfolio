@@ -205,18 +205,16 @@ export default function App() {
             <span>01 VISUAL</span>
             <span>/01</span>
           </div>
-          <div className="flex-1 flex flex-col justify-center items-center gap-8 py-12">
+          <div className="flex-1 relative py-12">
+            <img 
+                src="https://i.pinimg.com/originals/05/94/05/0594057a705f42a1f1e16b5a19207008.jpg" 
+                alt="Vaporwave style statue of David wearing a glowing crown and glasses."
+                className="w-full h-full object-cover"
+            />
             <FilledLightningIcon 
-              className="w-40 h-40 object-contain text-[#FF4500] flex-shrink-0"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 text-[#FF4500]"
               style={{ mixBlendMode: 'normal' }}
             />
-            <div className="w-full px-8">
-              <img 
-                  src="https://i.pinimg.com/originals/05/94/05/0594057a705f42a1f1e16b5a19207008.jpg" 
-                  alt="Vaporwave style statue of David wearing a glowing crown and glasses."
-                  className="w-full h-auto object-cover rounded-lg shadow-lg"
-              />
-            </div>
           </div>
         </div>
       </main>
