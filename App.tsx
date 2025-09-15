@@ -179,7 +179,7 @@ export default function App() {
       <main className={`flex flex-col lg:flex-row flex-1 divide-y lg:divide-y-0 lg:divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
         <div className="w-full lg:w-1/2 flex flex-col lg:pr-6 pb-8 lg:pb-0">
-          <div className={`flex justify-between text-[10px] py-1 ${grayTextClasses}`}>
+          <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -215,7 +215,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-full lg:w-1/2 flex flex-col lg:pl-6 pt-8 lg:pt-0">
-          <div className={`flex justify-between text-[10px] py-1 ${grayTextClasses}`}>
+          <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
