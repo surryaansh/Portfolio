@@ -143,7 +143,7 @@ export default function App() {
                       transform: 'translate(-50%, -50%)',
                       zIndex: 9999,
                       transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
-                      backgroundColor: isHoveringMedia ? 'black' : 'white',
+                      backgroundColor: isHoveringMedia ? (isDarkMode ? 'white' : 'black') : 'white',
                       mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
                       opacity: applyCursorFadeIn ? 1 : 0,
                   }}
