@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { FilledLightningIcon } from '../icons/FilledLightningIcon.tsx';
 
 interface RightPanelProps {
   isDarkMode: boolean;
@@ -16,16 +17,13 @@ export const RightPanel = forwardRef<HTMLDivElement, RightPanelProps>(
   
     return (
       <div className="w-full lg:w-1/2 flex flex-col lg:pl-6 pt-8 lg:pt-0">
-        <div className={`text-[10px] py-2 ${grayTextClasses}`}>
-          <div className="flex justify-between">
-            <span>01</span>
-            <span>/01</span>
-          </div>
-          <span>LOGO</span>
+        <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
+          <span>01 LOGO</span>
+          <span>/01</span>
         </div>
         <div 
           ref={ref}
-          className="flex-1 relative overflow-hidden pt-2 pb-12"
+          className="flex-1 relative overflow-hidden px-2 pt-0 pb-12 lg:px-0"
         >
           {/* This is the solid cursor, only visible when inside this container */}
           <div
@@ -46,10 +44,13 @@ export const RightPanel = forwardRef<HTMLDivElement, RightPanelProps>(
             aria-hidden="true"
           />
           <img 
-            src="/vaporwave-david.png" 
-            alt="A thin sliver of a vaporwave-style sculpture."
-            className="h-full w-4 object-cover"
-            aria-hidden="true"
+              src="/vaporwave-david.png"
+              alt="Vaporwave style statue of David wearing a glowing crown and glasses."
+              className="w-full h-full object-cover"
+          />
+          <FilledLightningIcon 
+            className="absolute bottom-12 right-6 md:bottom-20 md:right-[5%] text-[#FF4500] w-28 h-28 md:w-[9.409rem] md:h-[9.409rem]"
+            style={{ mixBlendMode: 'normal' }}
           />
         </div>
       </div>
