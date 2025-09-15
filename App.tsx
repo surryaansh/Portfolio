@@ -20,7 +20,6 @@ declare global {
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
-  const [isHoveringMedia, setIsHoveringMedia] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [applyCursorFadeIn, setApplyCursorFadeIn] = useState(false);
@@ -66,6 +65,37 @@ export default function App() {
       });
     };
   }, []);
+
+  // This effect handles the cursor style change on image hover directly
+  // to avoid React state update delays that cause flickering.
+  useEffect(() => {
+    const cursor = document.getElementById('custom-cursor');
+    const mediaArea = document.getElementById('media-hover-area');
+
+    if (!cursor || !mediaArea) {
+      return;
+    }
+
+    const handleMouseEnter = () => {
+      cursor.style.mixBlendMode = 'normal';
+      cursor.style.backgroundColor = isDarkMode ? 'white' : 'black';
+    };
+
+    const handleMouseLeave = () => {
+      cursor.style.mixBlendMode = 'difference';
+      cursor.style.backgroundColor = 'white';
+    };
+
+    mediaArea.addEventListener('mouseenter', handleMouseEnter);
+    mediaArea.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      mediaArea.removeEventListener('mouseenter', handleMouseEnter);
+      mediaArea.removeEventListener('mouseleave', handleMouseLeave);
+      // Reset styles on cleanup in case the component unmounts while hovered
+      handleMouseLeave();
+    };
+  }, [isDarkMode]); // Re-run this effect if the theme changes
 
   const handleThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Fallback for browsers that don't support the API
@@ -132,6 +162,7 @@ export default function App() {
         <div className="hidden lg:block">
           {!isTransitioning && (
               <div
+                  id="custom-cursor"
                   style={{
                       position: 'fixed',
                       top: cursorPosition.y,
@@ -143,8 +174,8 @@ export default function App() {
                       transform: 'translate(-50%, -50%)',
                       zIndex: 9999,
                       transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
-                      backgroundColor: isHoveringMedia ? (isDarkMode ? 'white' : 'black') : 'white',
-                      mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
+                      backgroundColor: 'white',
+                      mixBlendMode: 'difference',
                       opacity: applyCursorFadeIn ? 1 : 0,
                   }}
                   aria-hidden="true"
@@ -224,9 +255,8 @@ export default function App() {
               style={{ mixBlendMode: 'normal' }}
             />
             <div
+              id="media-hover-area"
               className="absolute inset-0"
-              onMouseEnter={() => setIsHoveringMedia(true)}
-              onMouseLeave={() => setIsHoveringMedia(false)}
               aria-hidden="true"
             />
           </div>
