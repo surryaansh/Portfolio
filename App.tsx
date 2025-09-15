@@ -129,8 +129,8 @@ export default function App() {
 
   const grayTextClasses = `transition-colors duration-300 ease-in-out ${
     isDarkMode
-      ? 'text-gray-400 hover:text-[#efeeee]'
-      : 'text-gray-600 hover:text-black'
+      ? 'text-gray-400'
+      : 'text-gray-600'
   }`;
 
   return (
@@ -170,9 +170,9 @@ export default function App() {
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg">
-          <a href="#" className="transition-opacity duration-200 hover:opacity-70">PROJECTS</a>
-          <a href="#" className="transition-opacity duration-200 hover:opacity-70">SKILLS</a>
-          <a href="#" className="transition-opacity duration-200 hover:opacity-70">LET'S CONNECT</a>
+          <a href="#" className="transition-opacity duration-200">PROJECTS</a>
+          <a href="#" className="transition-opacity duration-200">SKILLS</a>
+          <a href="#" className="transition-opacity duration-200">LET'S CONNECT</a>
         </nav>
       </header>
 
@@ -180,7 +180,7 @@ export default function App() {
       <main className={`flex flex-col lg:flex-row flex-1 divide-y lg:divide-y-0 lg:divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
         <div className="w-full lg:w-1/2 flex flex-col lg:pr-8 pb-8 lg:pb-0">
-          <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
+          <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -216,7 +216,7 @@ export default function App() {
 
         {/* Right Side */}
         <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-8 lg:pt-0">
-          <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
+          <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
