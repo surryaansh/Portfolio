@@ -206,15 +206,13 @@ export default function App() {
         </div>
 
         {/* Right Side */}
-        <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-6 lg:pt-0">
+        <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-8 lg:pt-0">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
-            <span>01 EXPERTS</span>
+            <span>01 LOGO</span>
             <span>/01</span>
           </div>
           <div 
             className="flex-1 relative px-2 pt-0 pb-12 lg:px-0"
-            onMouseEnter={() => setIsHoveringMedia(true)}
-            onMouseLeave={() => setIsHoveringMedia(false)}
           >
             <img 
                 src="/vaporwave-david.png"
@@ -224,6 +222,12 @@ export default function App() {
             <FilledLightningIcon 
               className="absolute bottom-12 right-6 md:bottom-20 md:right-[5%] text-[#FF4500] w-28 h-28 md:w-[9.409rem] md:h-[9.409rem]"
               style={{ mixBlendMode: 'normal' }}
+            />
+            <div
+              className="absolute inset-0"
+              onMouseEnter={() => setIsHoveringMedia(true)}
+              onMouseLeave={() => setIsHoveringMedia(false)}
+              aria-hidden="true"
             />
           </div>
         </div>
