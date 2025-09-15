@@ -66,35 +66,6 @@ export default function App() {
     };
   }, []);
 
-  // This effect handles the cursor style change on image hover directly
-  // to avoid React state update delays that cause flickering.
-  useEffect(() => {
-    const cursor = document.getElementById('custom-cursor');
-    const mediaArea = document.getElementById('media-hover-area');
-
-    if (!cursor || !mediaArea) {
-      return;
-    }
-
-    const handleMouseEnter = () => {
-      cursor.style.mixBlendMode = 'normal';
-    };
-
-    const handleMouseLeave = () => {
-      cursor.style.mixBlendMode = 'difference';
-    };
-
-    mediaArea.addEventListener('mouseenter', handleMouseEnter);
-    mediaArea.addEventListener('mouseleave', handleMouseLeave);
-
-    return () => {
-      mediaArea.removeEventListener('mouseenter', handleMouseEnter);
-      mediaArea.removeEventListener('mouseleave', handleMouseLeave);
-      // Reset styles on cleanup in case the component unmounts while hovered
-      handleMouseLeave();
-    };
-  }, []); // No dependencies needed
-
   const handleThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Fallback for browsers that don't support the API
     if (!document.startViewTransition) {
@@ -242,6 +213,7 @@ export default function App() {
           </div>
           <div 
             className="flex-1 relative px-2 pt-0 pb-12 lg:px-0"
+            style={{ isolation: 'isolate' }}
           >
             <img 
                 src="/vaporwave-david.png"
@@ -251,11 +223,6 @@ export default function App() {
             <FilledLightningIcon 
               className="absolute bottom-12 right-6 md:bottom-20 md:right-[5%] text-[#FF4500] w-28 h-28 md:w-[9.409rem] md:h-[9.409rem]"
               style={{ mixBlendMode: 'normal' }}
-            />
-            <div
-              id="media-hover-area"
-              className="absolute inset-0"
-              aria-hidden="true"
             />
           </div>
         </div>
