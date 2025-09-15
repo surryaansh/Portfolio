@@ -212,7 +212,7 @@ export default function App() {
             <span>/01</span>
           </div>
           <div 
-            className="flex-1 relative px-2 pt-2 pb-12 lg:px-0"
+            className="flex-1 relative px-2 pt-0 pb-12 lg:px-0"
             onMouseEnter={() => setIsHoveringMedia(true)}
             onMouseLeave={() => setIsHoveringMedia(false)}
           >
