@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { LightningIcon } from './components/icons/LightningIcon.tsx';
 import { ReactIcon } from './components/icons/ReactIcon.tsx';
 import { NodeJsIcon } from './components/icons/NodeJsIcon.tsx';
@@ -19,11 +20,14 @@ declare global {
 
 export default function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
+  const [relativeCursorPosition, setRelativeCursorPosition] = useState({ x: -100, y: -100 });
   const [isHoveringLink, setIsHoveringLink] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [applyCursorFadeIn, setApplyCursorFadeIn] = useState(false);
   
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // This effect handles the fade-in animation for the custom cursor
     // when it reappears after a theme transition.
@@ -43,6 +47,14 @@ export default function App() {
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       setCursorPosition({ x: event.clientX, y: event.clientY });
+      
+      if (imageContainerRef.current) {
+        const rect = imageContainerRef.current.getBoundingClientRect();
+        setRelativeCursorPosition({
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        });
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -209,9 +221,26 @@ export default function App() {
             <span>/01</span>
           </div>
           <div 
-            className="flex-1 relative px-2 pt-0 pb-12 lg:px-0"
-            style={{ position: 'relative', zIndex: 10000, cursor: 'auto' }}
+            ref={imageContainerRef}
+            className="flex-1 relative overflow-hidden px-2 pt-0 pb-12 lg:px-0"
           >
+            <div
+              className="hidden lg:block"
+              style={{
+                position: 'absolute',
+                top: relativeCursorPosition.y,
+                left: relativeCursorPosition.x,
+                width: `${isHoveringLink ? 60 : 40}px`,
+                height: `${isHoveringLink ? 60 : 40}px`,
+                backgroundColor: isDarkMode ? 'white' : 'black',
+                borderRadius: '50%',
+                pointerEvents: 'none',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10000,
+                transition: 'width 0.2s ease, height 0.2s ease',
+              }}
+              aria-hidden="true"
+            />
             <img 
                 src="/vaporwave-david.png"
                 alt="Vaporwave style statue of David wearing a glowing crown and glasses."
