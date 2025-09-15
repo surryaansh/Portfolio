@@ -78,12 +78,10 @@ export default function App() {
 
     const handleMouseEnter = () => {
       cursor.style.mixBlendMode = 'normal';
-      cursor.style.backgroundColor = isDarkMode ? 'white' : 'black';
     };
 
     const handleMouseLeave = () => {
       cursor.style.mixBlendMode = 'difference';
-      cursor.style.backgroundColor = 'white';
     };
 
     mediaArea.addEventListener('mouseenter', handleMouseEnter);
@@ -95,7 +93,7 @@ export default function App() {
       // Reset styles on cleanup in case the component unmounts while hovered
       handleMouseLeave();
     };
-  }, [isDarkMode]); // Re-run this effect if the theme changes
+  }, []); // No dependencies needed
 
   const handleThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
     // Fallback for browsers that don't support the API
@@ -173,7 +171,7 @@ export default function App() {
                       pointerEvents: 'none',
                       transform: 'translate(-50%, -50%)',
                       zIndex: 9999,
-                      transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
+                      transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out',
                       backgroundColor: 'white',
                       mixBlendMode: 'difference',
                       opacity: applyCursorFadeIn ? 1 : 0,
