@@ -126,39 +126,41 @@ export default function App() {
 
   return (
     <div 
-      className={`min-h-screen flex flex-col font-sans px-16 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
+      className={`min-h-screen flex flex-col font-sans px-4 md:px-16 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
       style={{ cursor: isTransitioning ? 'auto' : 'none' }}
       >
-        {!isTransitioning && (
-            <div
-                style={{
-                    position: 'fixed',
-                    top: cursorPosition.y,
-                    left: cursorPosition.x,
-                    width: `${cursorSize}px`,
-                    height: `${cursorSize}px`,
-                    borderRadius: '50%',
-                    pointerEvents: 'none',
-                    transform: 'translate(-50%, -50%)',
-                    zIndex: 9999,
-                    transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
-                    backgroundColor: isHoveringMedia ? 'black' : 'white',
-                    mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
-                    opacity: applyCursorFadeIn ? 1 : 0,
-                }}
-                aria-hidden="true"
-            />
-        )}
+        <div className="hidden lg:block">
+          {!isTransitioning && (
+              <div
+                  style={{
+                      position: 'fixed',
+                      top: cursorPosition.y,
+                      left: cursorPosition.x,
+                      width: `${cursorSize}px`,
+                      height: `${cursorSize}px`,
+                      borderRadius: '50%',
+                      pointerEvents: 'none',
+                      transform: 'translate(-50%, -50%)',
+                      zIndex: 9999,
+                      transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out, background-color 0.2s ease',
+                      backgroundColor: isHoveringMedia ? 'black' : 'white',
+                      mixBlendMode: isHoveringMedia ? 'normal' : 'difference',
+                      opacity: applyCursorFadeIn ? 1 : 0,
+                  }}
+                  aria-hidden="true"
+              />
+          )}
+        </div>
       {/* Top Bar */}
-      <header className={`flex justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
-        <div className="flex items-center gap-4">
+      <header className={`flex flex-col md:flex-row justify-between items-center py-4 border-b ${isDarkMode ? 'border-[#efeeee]' : 'border-black'}`}>
+        <div className="flex items-center gap-4 mb-4 md:mb-0">
           <div className="flex items-center gap-2">
             <LightningIcon className="h-6 text-[#FF4500]" />
             <span className="text-xl font-extrabold italic text-[#FF4500] tracking-wide">SURYANSH // SINGH</span>
           </div>
           <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
         </div>
-        <nav className="flex gap-8 text-lg">
+        <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-lg">
           <a href="#" className="transition-opacity duration-200 hover:opacity-70">PROJECTS</a>
           <a href="#" className="transition-opacity duration-200 hover:opacity-70">SKILLS</a>
           <a href="#" className="transition-opacity duration-200 hover:opacity-70">LET'S CONNECT</a>
@@ -166,9 +168,9 @@ export default function App() {
       </header>
 
       {/* Main Content */}
-      <main className={`flex flex-1 divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
+      <main className={`flex flex-col lg:flex-row flex-1 divide-y lg:divide-y-0 lg:divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col pr-8">
+        <div className="w-full lg:w-1/2 flex flex-col lg:pr-8 pb-8 lg:pb-0">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
             <span>00 TITLE</span>
             <span>/00</span>
@@ -176,12 +178,12 @@ export default function App() {
           <div className="flex-1 flex flex-col pt-8 pb-12">
             {/* Top content block */}
             <div className="mb-auto">
-              <h1 className="text-5xl font-light leading-tight mb-6 text-left">
+              <h1 className="text-4xl md:text-5xl font-light leading-tight mb-6 text-center lg:text-left">
                 FROM MERN TO WEB3 <br /> ALWAYS EXPLORING.
               </h1>
 
               {/* Emoji Row */}
-              <div className="flex items-center justify-start gap-4 mb-10">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-10">
                 <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125" />
                 <ReactIcon className="w-10 h-10 transition-transform duration-300 ease-in-out hover:scale-125" />
                 <LightningIcon className="w-6 h-6 transition-transform duration-300 ease-in-out hover:scale-125" />
@@ -192,9 +194,9 @@ export default function App() {
             </div>
             
             {/* Bottom content block */}
-            <div className="flex justify-end mb-12">
+            <div className="flex justify-center lg:justify-end mb-12">
               <p 
-                className={`max-w-md leading-relaxed text-left ${grayTextClasses}`}
+                className={`max-w-md leading-relaxed text-center lg:text-left ${grayTextClasses}`}
                 style={{ fontSize: '1.0153rem' }}
               >
                 Not just another portfolio, this is my journey in code. From MERN apps to blockchain platforms powered by smart contracts, this journey is about continuous growth, learning, and building technology with purpose.
@@ -204,7 +206,7 @@ export default function App() {
         </div>
 
         {/* Right Side */}
-        <div className="w-1/2 flex flex-col pl-8">
+        <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-8 lg:pt-0">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
             <span>01 EXPERTS</span>
             <span>/01</span>
@@ -220,8 +222,8 @@ export default function App() {
                 className="w-full h-full object-cover"
             />
             <FilledLightningIcon 
-              className="absolute bottom-20 right-[5%] text-[#FF4500]"
-              style={{ mixBlendMode: 'normal', width: '9.409rem', height: '9.409rem' }}
+              className="absolute bottom-12 right-6 md:bottom-20 md:right-[5%] text-[#FF4500] w-28 h-28 md:w-[9.409rem] md:h-[9.409rem]"
+              style={{ mixBlendMode: 'normal' }}
             />
           </div>
         </div>
