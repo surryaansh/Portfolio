@@ -206,7 +206,7 @@ export default function App() {
         </div>
 
         {/* Right Side */}
-        <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-8 lg:pt-0">
+        <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-6 lg:pt-0">
           <div className={`flex justify-between text-xs py-4 ${grayTextClasses}`}>
             <span>01 EXPERTS</span>
             <span>/01</span>
