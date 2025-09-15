@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { LightningIcon } from './components/icons/LightningIcon.tsx';
 import { ReactIcon } from './components/icons/ReactIcon.tsx';
 import { NodeJsIcon } from './components/icons/NodeJsIcon.tsx';
@@ -23,6 +23,8 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [applyCursorFadeIn, setApplyCursorFadeIn] = useState(false);
+  const [mediaRect, setMediaRect] = useState<DOMRect | null>(null);
+  const mediaAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // This effect handles the fade-in animation for the custom cursor
@@ -39,6 +41,26 @@ export default function App() {
       };
     }
   }, [isTransitioning]);
+  
+  // Effect to observe the media area for clipping the cursor
+  useEffect(() => {
+    const element = mediaAreaRef.current;
+    if (!element) return;
+    
+    // Set initial rect
+    setMediaRect(element.getBoundingClientRect());
+    
+    const observer = new ResizeObserver(entries => {
+      if (entries[0]) {
+        setMediaRect(entries[0].target.getBoundingClientRect());
+      }
+    });
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
@@ -116,6 +138,34 @@ export default function App() {
   };
 
   const cursorSize = isHoveringLink ? 60 : 40;
+  
+  const baseCursorStyle: React.CSSProperties = {
+      position: 'fixed',
+      top: cursorPosition.y,
+      left: cursorPosition.x,
+      width: `${cursorSize}px`,
+      height: `${cursorSize}px`,
+      borderRadius: '50%',
+      pointerEvents: 'none',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 9999,
+      transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out',
+      opacity: applyCursorFadeIn ? 1 : 0,
+      backgroundColor: 'white',
+  };
+
+  const clipPathStyle = mediaRect
+    ? `polygon(
+        0% 0%, 100% 0%, 100% 100%, 0% 100%,
+        0% ${mediaRect.top}px,
+        ${mediaRect.left}px ${mediaRect.top}px,
+        ${mediaRect.left}px ${mediaRect.bottom}px,
+        ${mediaRect.right}px ${mediaRect.bottom}px,
+        ${mediaRect.right}px ${mediaRect.top}px,
+        0% ${mediaRect.top}px
+      )`
+    : 'none';
+
 
   const grayTextClasses = `transition-colors duration-300 ease-in-out ${
     isDarkMode
@@ -130,25 +180,22 @@ export default function App() {
       >
         <div className="hidden lg:block">
           {!isTransitioning && (
-              <div
-                  id="custom-cursor"
-                  style={{
-                      position: 'fixed',
-                      top: cursorPosition.y,
-                      left: cursorPosition.x,
-                      width: `${cursorSize}px`,
-                      height: `${cursorSize}px`,
-                      borderRadius: '50%',
-                      pointerEvents: 'none',
-                      transform: 'translate(-50%, -50%)',
-                      zIndex: 9999,
-                      transition: 'width 0.2s ease, height 0.2s ease, opacity 0.5s ease-in-out',
-                      backgroundColor: 'white',
-                      mixBlendMode: 'difference',
-                      opacity: applyCursorFadeIn ? 1 : 0,
-                  }}
-                  aria-hidden="true"
-              />
+              <>
+                {/* Solid cursor (bottom layer), visible only when top is clipped */}
+                <div
+                    style={{ ...baseCursorStyle, mixBlendMode: 'normal' }}
+                    aria-hidden="true"
+                />
+                {/* Blended cursor (top layer), clipped over media area */}
+                <div
+                    style={{ 
+                      ...baseCursorStyle, 
+                      mixBlendMode: 'difference', 
+                      clipPath: clipPathStyle,
+                    }}
+                    aria-hidden="true"
+                />
+              </>
           )}
         </div>
       {/* Top Bar */}
@@ -212,8 +259,8 @@ export default function App() {
             <span>/01</span>
           </div>
           <div 
+            ref={mediaAreaRef}
             className="flex-1 relative px-2 pt-0 pb-12 lg:px-0"
-            style={{ isolation: 'isolate' }}
           >
             <img 
                 src="/vaporwave-david.png"
