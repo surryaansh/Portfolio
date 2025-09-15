@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { LightningIcon } from './components/icons/LightningIcon.tsx';
 import { ReactIcon } from './components/icons/ReactIcon.tsx';
@@ -179,8 +178,8 @@ export default function App() {
       {/* Main Content */}
       <main className={`flex flex-col lg:flex-row flex-1 divide-y lg:divide-y-0 lg:divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
         {/* Left Side */}
-        <div className="w-full lg:w-1/2 flex flex-col lg:pr-8 pb-8 lg:pb-0">
-          <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
+        <div className="w-full lg:w-1/2 flex flex-col lg:pr-4 pb-8 lg:pb-0">
+          <div className={`flex justify-between text-[10px] py-1 ${grayTextClasses}`}>
             <span>00 TITLE</span>
             <span>/00</span>
           </div>
@@ -215,8 +214,8 @@ export default function App() {
         </div>
 
         {/* Right Side */}
-        <div className="w-full lg:w-1/2 flex flex-col lg:pl-8 pt-8 lg:pt-0">
-          <div className={`flex justify-between text-[10px] py-2 ${grayTextClasses}`}>
+        <div className="w-full lg:w-1/2 flex flex-col lg:pl-4 pt-8 lg:pt-0">
+          <div className={`flex justify-between text-[10px] py-1 ${grayTextClasses}`}>
             <span>01 LOGO</span>
             <span>/01</span>
           </div>
