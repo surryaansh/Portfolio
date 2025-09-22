@@ -1,66 +1,43 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, memo, useEffect } from 'react';
 import { Header } from './components/layout/Header.tsx';
 import { LeftPanel } from './components/layout/LeftPanel.tsx';
 import { RightPanel } from './components/layout/RightPanel.tsx';
 import { BlendedCursor } from './components/BlendedCursor.tsx';
+import { ProjectsLeftPanel } from './components/layout/ProjectsLeftPanel.tsx';
+import { ProjectsRightPanel } from './components/layout/ProjectsRightPanel.tsx';
+import { SkillsSection } from './components/layout/SkillsSection.tsx';
+import { ContactSection } from './components/layout/ContactSection.tsx';
+import { Footer } from './components/layout/Footer.tsx';
+import { useMousePosition } from './hooks/useMousePosition.ts';
+import { PROJECTS_DATA } from './constants/projects.ts';
+import './types.d.ts'; // Import for global type declarations
 
-// The ViewTransition API is not yet in standard TS libs, so we declare it here.
-declare global {
-  interface Document {
-    startViewTransition?(callback: () => void): ViewTransition;
-  }
+// Memoize components that do not need to re-render on every state change.
+const MemoizedHeader = memo(Header);
+const MemoizedLeftPanel = memo(LeftPanel);
+const MemoizedProjectsLeftPanel = memo(ProjectsLeftPanel);
+const MemoizedSkillsSection = memo(SkillsSection);
+const MemoizedFooter = memo(Footer);
 
-  interface ViewTransition {
-    ready: Promise<void>;
-  }
-}
-
+/**
+ * The main application component.
+ * Manages global state such as theme, cursor position, and view transitions.
+ */
 export default function App() {
-  const [cursorPosition, setCursorPosition] = useState({ x: -100, y: -100 });
-  const [relativeCursorPosition, setRelativeCursorPosition] = useState({ x: -100, y: -100 });
-  const [isHoveringLink, setIsHoveringLink] = useState(false);
+  // Global cursor position and link hover state.
+  const { position: cursorPosition, isHoveringLink } = useMousePosition();
+
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<string>(PROJECTS_DATA[0].name);
   
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      setCursorPosition({ x: event.clientX, y: event.clientY });
-      
-      // We still need the ref in App.tsx to pass it to the RightPanel,
-      // but the calculation is now scoped to where the ref is actually used.
-      if (imageContainerRef.current) {
-        const rect = imageContainerRef.current.getBoundingClientRect();
-        setRelativeCursorPosition({
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top,
-        });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    const interactiveElements = document.querySelectorAll('a, button');
-    
-    const handleLinkEnter = () => setIsHoveringLink(true);
-    const handleLinkLeave = () => setIsHoveringLink(false);
-
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleLinkEnter);
-      el.addEventListener('mouseleave', handleLinkLeave);
-    });
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleLinkEnter);
-        el.removeEventListener('mouseleave', handleLinkLeave);
-      });
-    };
-  }, []);
-
+  /**
+   * Handles the theme toggle with a smooth circular reveal animation
+   * using the View Transition API.
+   * @param event - The mouse event from the button click.
+   */
   const handleThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    // Fallback for browsers that do not support the View Transition API.
     if (!document.startViewTransition) {
       setIsDarkMode(!isDarkMode);
       return;
@@ -94,33 +71,51 @@ export default function App() {
           pseudoElement: '::view-transition-new(root)',
         }
       );
-      animation.finished.then(() => {
-        setIsTransitioning(false);
-      });
+      animation.onfinish = () => setIsTransitioning(false);
     });
   };
 
+  const themeClasses = isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black';
+  const borderClasses = isDarkMode ? 'divide-[#efeeee] border-[#efeeee]' : 'divide-black border-black';
+  
   return (
     <div 
-      className={`min-h-screen flex flex-col font-sans px-4 md:px-16 pt-8 ${isDarkMode ? 'bg-black text-[#efeeee]' : 'bg-[#efeeee] text-black'}`}
+      className={`min-h-screen flex flex-col font-sans px-4 md:px-16 pt-8 ${themeClasses}`}
       style={{ cursor: isTransitioning ? 'auto' : 'none' }}
     >
       <BlendedCursor 
         position={cursorPosition} 
         isHoveringLink={isHoveringLink} 
-        isTransitioning={isTransitioning} 
       />
       
-      <Header isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
+      <MemoizedHeader isDarkMode={isDarkMode} toggleDarkMode={handleThemeToggle} />
 
-      <main className={`flex flex-col lg:flex-row flex-1 divide-y lg:divide-y-0 lg:divide-x ${isDarkMode ? 'divide-[#efeeee]' : 'divide-black'}`}>
-        <LeftPanel isDarkMode={isDarkMode} />
-        <RightPanel 
-          ref={imageContainerRef}
+      <main className="flex-1 flex flex-col">
+        <section id="about" className={`flex flex-col lg:flex-row flex-1 divide-y lg:divide-y-0 lg:divide-x ${borderClasses}`}>
+          <MemoizedLeftPanel isDarkMode={isDarkMode} />
+          <RightPanel isDarkMode={isDarkMode} />
+        </section>
+
+        <section id="projects" className={`flex flex-col lg:grid lg:grid-cols-3 flex-1 border-t min-h-[60vh] divide-y lg:divide-y-0 ${borderClasses}`}>
+            <MemoizedProjectsLeftPanel 
+              isDarkMode={isDarkMode}
+              selectedProject={selectedProject}
+              setSelectedProject={setSelectedProject}
+            />
+            <ProjectsRightPanel
+              isDarkMode={isDarkMode} 
+              selectedProject={selectedProject}
+            />
+        </section>
+        
+        <MemoizedSkillsSection isDarkMode={isDarkMode} />
+
+        <ContactSection 
           isDarkMode={isDarkMode} 
-          isHoveringLink={isHoveringLink}
-          relativeCursorPosition={relativeCursorPosition}
+          cursorPosition={cursorPosition}
         />
+        
+        <MemoizedFooter isDarkMode={isDarkMode} />
       </main>
     </div>
   );

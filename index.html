@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: 'Inter', sans-serif;
         -webkit-user-select: none; /* Safari */
@@ -17,9 +20,28 @@
         -ms-user-select: none;     /* IE10+/Edge */
         user-select: none;         /* Standard */
       }
-      /* Ensure custom cursor is used everywhere */
+      /* 
+        This rule ensures the custom cursor is used consistently. 
+        !important is used here deliberately to override default browser styles 
+        and any potential specificity conflicts on interactive elements.
+      */
       a, button {
-        cursor: none !important; /* Use !important to override defaults */
+        cursor: none !important;
+      }
+      /* Utility to hide scrollbars for a cleaner look */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out forwards;
       }
     </style>
   <script type="importmap">
@@ -27,10 +49,12 @@
   "imports": {
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
     "react": "https://aistudiocdn.com/react@^19.1.1",
-    "react/": "https://aistudiocdn.com/react@^19.1.1/"
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
   }
 }
 </script>
+<link rel="stylesheet" href="/index.css">
 </head>
   <body>
     <div id="root"></div>
